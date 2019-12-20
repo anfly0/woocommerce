@@ -43,3 +43,12 @@ jobs:
               --admin_user=admin \
               --admin_password=admin \
               --admin_email=foo@bar.com
+
+      - name: Install Relative URL Plugin
+        run: |
+          docker run -i --rm \
+            --volumes-from wp-container \
+            --user xfs \
+            --network wp-network \
+            wordpress:cli plugin install relative-url \
+              --activate \
