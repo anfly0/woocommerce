@@ -8,14 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
+      #- name: Validate composer.json and composer.lock
+      #  run: composer validate
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+      #- name: Install dependencies
+      #  run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Run PHP codesniffer
-        run: composer run php:codesniffer
+      #- name: Run PHP codesniffer
+      #  run: composer run php:codesniffer
 
-      - name: Run PHP Unit test suite
-        run: composer run php:unit-tests
+      #- name: Run PHP Unit test suite
+      #  run: composer run php:unit-tests
