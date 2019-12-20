@@ -34,7 +34,7 @@ jobs:
 
       - name: Install WordPress
         run: |
-          docker run -it --rm \
+          docker run -d --rm \
             --volumes-from wp-container \
             --network wp-network \
             wordpress:cli core install \
