@@ -52,3 +52,12 @@ jobs:
             --network wp-network \
             wordpress:cli plugin install relative-url \
               --activate \
+
+      - name: Install WooCommerce Plugin
+        run: |
+          docker run -i --rm \
+            --volumes-from wp-container \
+            --user xfs \
+            --network wp-network \
+            wordpress:cli plugin install woocommerce \
+              --activate \
