@@ -8,10 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
       - name: Set up network
         run: docker network create wp-network
 
@@ -48,7 +44,7 @@ jobs:
               --admin_password=admin \
               --admin_email=foo@bar.com
 
-      - name: Install Relative URL Plugin
+      - name: Install Relative URL plugin
         run: |
           docker run -i --rm \
             --volumes-from wp-container \
@@ -57,7 +53,7 @@ jobs:
             wordpress:cli plugin install relative-url \
               --activate \
 
-      - name: Install WooCommerce Plugin
+      - name: Install WooCommerce plugin
         run: |
           docker run -i --rm \
             --volumes-from wp-container \
@@ -66,14 +62,17 @@ jobs:
             wordpress:cli plugin install woocommerce \
               --activate \
 
-      - name: Install Billmate Payment Gateway (this) Plugin
+      - name: copy Install Billmate Payment Gateway plugin
+        run: docker cp ${{ GITHUB_WORKSPACE }}/src wp-container:/var/www/html
+
+      - name: Install Billmate Payment Gateway (this) plugin
         run: |
-          docker run -i --rm \
+          docker run -it --rm \
             --volumes-from wp-container \
             --user xfs \
             --network wp-network \
-            wordpress:cli plugin install woocommerce \
-              --activate \
+            wordpress:cli plugin install /var/www/html/src \
+              --activate
 
       - name: Ping local WP instance (localhost)
         run: |
