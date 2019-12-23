@@ -63,7 +63,7 @@ jobs:
               --activate \
 
       - name: copy Install Billmate Payment Gateway plugin
-        run: docker cp ${{ GITHUB_WORKSPACE }}/src wp-container:/var/www/html
+        run: docker cp ${{ github.workspace }}/src wp-container:/var/www/html
 
       - name: Install Billmate Payment Gateway (this) plugin
         run: |
