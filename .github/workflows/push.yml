@@ -67,7 +67,7 @@ jobs:
 
       - name: Install Billmate Payment Gateway (this) plugin
         run: |
-          docker run -it --rm \
+          docker run -i --rm \
             --volumes-from wp-container \
             --user xfs \
             --network wp-network \
